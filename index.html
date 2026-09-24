@@ -213,6 +213,7 @@ article img{cursor:zoom-in}
 .about a.a-btn{font-family:var(--mono);font-size:.78rem;text-decoration:none;color:var(--text);border:1px solid var(--border-lit);padding:8px 13px;border-radius:8px;transition:.15s;display:inline-flex;align-items:center;gap:7px}
 .about a.a-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 .about a.a-btn.gold:hover{border-color:var(--gold);color:var(--gold)}
+#read-bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold));z-index:200;transition:width .08s linear}
 </style>
 </head>
 <body>
@@ -236,7 +237,7 @@ article img{cursor:zoom-in}
     <div class="grid" id="grid"></div>
   </main>
   <section class="about wrap">
-    <div class="a-txt">Soy <b>Adrià Llinares</b>, técnico en ciberseguridad (eJPT). Aquí documento las máquinas que voy rooteando para practicar y compartir metodología. <b>Red Team &amp; Blue Team.</b></div>
+    <div class="a-txt">Soy <b>Adrià Llinares Arroyo</b>, técnico en ciberseguridad. Aquí documento las máquinas que voy rooteando para practicar y compartir metodología.</div>
     <div class="a-links">
       <a class="a-btn gold" href="https://www.linkedin.com/in/adriallinaresarroyo" target="_blank" rel="noopener">in · LinkedIn</a>
       <a class="a-btn" href="https://github.com/AdriaLlinares" target="_blank" rel="noopener">◇ GitHub</a>
@@ -1607,6 +1608,16 @@ document.addEventListener("keydown",e=>{
 document.getElementById("fyear").textContent="© "+new Date().getFullYear();
 window.addEventListener("hashchange",router);
 router();
+</script>
+<script>
+(function(){
+  var bar=document.createElement("div"); bar.id="read-bar"; document.body.appendChild(bar);
+  function upd(){ var h=document.documentElement, max=h.scrollHeight-h.clientHeight; bar.style.width=(max>0?(h.scrollTop/max*100):0)+"%"; }
+  window.addEventListener("scroll",upd,{passive:true});
+  window.addEventListener("resize",upd);
+  window.addEventListener("hashchange",function(){ setTimeout(upd,50); });
+  upd();
+})();
 </script>
 </body>
 </html>
